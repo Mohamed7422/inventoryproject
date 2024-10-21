@@ -1,0 +1,32 @@
+{% extends 'partials/base.html' %}
+{% block title %}Recent Activity{% endblock %}
+
+{% block content %}
+<style>
+    .activity-container {
+        background-color: #f8f9fa; /* Light background for the container */
+        border-radius: 5px;        /* Rounded corners */
+        padding: 20px;              /* Padding inside the container */
+        margin-top: 20px;           /* Space from the top */
+    }
+
+    h1 {
+        color: #343a40;             /* Dark color for the heading */
+    }
+
+    .list-group-item {
+        background-color: #ffffff;  /* White background for list items */
+        border: 1px solid #dee2e6;  /* Border for list items */
+        margin-bottom: 10px;        /* Space between list items */
+    }
+</style>
+
+<div class="container activity-container">
+    <h1>Recent Activity</h1>
+    <ul class="list-group">
+        <li class="list-group-item">Activity 1: Added new item</li>
+        <li class="list-group-item">Activity 2: Checked out item #123</li>
+        <li class="list-group-item">Activity 3: Updated item description</li>
+    </ul>
+</div>
+{% endblock %}

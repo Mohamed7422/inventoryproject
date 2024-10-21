@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory App</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* Sidebar styling */
+        .sidebar {
+            height: 100vh; /* Full height */
+            background-color: #343a40; /* Dark background color */
+            color: white; /* Text color */
+            transition: all 0.3s; /* Smooth transition for width */
+            position: fixed; /* Keep sidebar fixed on the left */
+            z-index: 1000; /* Ensure sidebar is above other content */
+            width: 250px; /* Default width */
+        }
+
+        .sidebar.collapsed {
+            width: 80px; /* Width when collapsed */
+        }
+
+        .sidebar .nav-link {
+            color: rgba(255, 255, 255, 0.85); /* Light link color */
+        }
+
+        .sidebar .nav-link:hover {
+            color: white; /* White color on hover */
+            background-color: rgba(255, 255, 255, 0.1); /* Slight background on hover */
+        }
+
+        .sidebar-brand {
+            font-size: 1.5rem; /* Larger font for the brand */
+            margin-bottom: 1rem; /* Space below brand */
+            color: white; /* Brand color */
+            text-align: center; /* Center text */
+        }
+
+        .main-content {
+            margin-left: 250px; /* Space for sidebar */
+            padding: 20px; /* Padding around main content */
+            transition: margin-left 0.3s; /* Smooth transition for margin */
+        }
+
+        .main-content.collapsed {
+            margin-left: 80px; /* Adjust for collapsed sidebar */
+        }
+
+        .toggle-btn {
+            background-color: #007bff; /* Primary button color */
+            border: none; /* Remove border */
+            color: white; /* Button text color */
+            width: 100%; /* Full width */
+        }
+
+        .toggle-btn:hover {
+            background-color: #0056b3; /* Darker on hover */
+        }
+
+        /* Hide text when sidebar is collapsed */
+        .sidebar.collapsed .nav-text {
+            display: none; /* Hide text when sidebar is collapsed */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="d-flex">
+        <nav class="sidebar" id="sidebar">
+            <div class="p-3">
+                <button class="btn toggle-btn" id="toggleSidebar">Toggle Sidebar</button>
+            </div>
+            <a class="navbar-brand sidebar-brand flex-column p-2" href="{% url 'dashboard-home' %}">Inventory App</a>
+            <div class="nav flex-column p-3">
+                <a class="nav-link" href="{% url 'dashboard-recentActivity' %}">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span class="nav-text">Recent Activity</span> <!-- Text for Recent Activity -->
+                </a>
+                <a class="nav-link" href="#" onclick="return false;">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a class="nav-link" href="#" onclick="return false;">
+                    <i class="fas fa-check-square"></i>
+                    <span class="nav-text">Check In</span>
+                </a>
+                <a class="nav-link" href="#" onclick="return false;">
+                    <i class="fas fa-check-circle"></i>
+                    <span class="nav-text">Check Out</span>
+                </a>
+                <a class="nav-link" href="#" onclick="return false;">
+                    <i class="fas fa-tags"></i>
+                    <span class="nav-text">Categories</span>
+                </a>
+                <a class="nav-link" href="#" onclick="return false;">
+                    <i class="fas fa-box"></i>
+                    <span class="nav-text">Products</span>
+                </a>
+            </div>
+        </nav>
+
+        
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Toggle sidebar function
+        document.getElementById('toggleSidebar').addEventListener('click', function () {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+            sidebar.classList.toggle('collapsed');
+
+            // Adjust sidebar width and main content margin
+            if (sidebar.classList.contains('collapsed')) {
+                sidebar.style.width = '80px'; // Set collapsed width
+                mainContent.classList.add('collapsed'); // Adjust for collapsed sidebar
+            } else {
+                sidebar.style.width = '250px'; // Set expanded width
+                mainContent.classList.remove('collapsed'); // Adjust for expanded sidebar
+            }
+        });
+    </script>
+</body>
+
+</html>
